@@ -9,7 +9,7 @@
 * CUDA与OpenCV实战，用于加速计算机视觉
 * [来源](https://github.com/PacktPublishing/Hands-On-GPU-Accelerated-Computer-Vision-with-OpenCV-and-CUDA)
 
-3.推荐：Programming on Parallel Machines
+3. 推荐：Programming on Parallel Machines
 * [并行机器编程（中文版）](https://github.com/thirdwing/ParaBook)
 
 4. CUDA自带文档：CUDA_C_Programming_Guide.pdf
