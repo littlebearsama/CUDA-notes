@@ -13,3 +13,21 @@
 * [并行机器编程（中文版）](https://github.com/thirdwing/ParaBook)
 
 4. CUDA自带文档：CUDA_C_Programming_Guide.pdf
+## 如何学习
+阅读顺序:	
+
+->开始
+
+->cuda by example,最简单最入门，很好用，跑程序与看书来学习
+
+->hands-gpu-accelerated-computer-vision-opencv-cuda，将cuda用到图像处理上
+
+->programming on parallel machines（进阶）
+
+CUDA_C_Programming_Guide.pdf ：官方文档，用来当字典
+
+安装cuda之后有官方文档
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\doc\pdf
+
+## 其他资源
+[cuda-rgb转灰度](https://github.com/canteen-man/CUDA-Program)
