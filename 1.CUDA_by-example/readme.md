@@ -4,7 +4,6 @@
 
 [TOC]
 
-
 # 一些知识
 
 ## 缓冲区(buffer)与缓存区(cache)
@@ -208,7 +207,7 @@ int main( void ) {
 
   三者的关系如下图：
 
-  ![img](https://img-blog.csdn.net/20170204230954920)
+  ![img](pic\1.png)
 
 ## 
 
@@ -332,7 +331,7 @@ __global__ void add( int *a, int *b, int *c ) {
 
 ## 3.二维的线程格，二维的线程块（实现波纹效果）
 
-![](https://img-blog.csdn.net/20170716092839317?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRmlzaFNlZWtlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](pic\2.png)
 
 ```C++
 
@@ -421,7 +420,7 @@ __global__ void dot(float *a, float *b, float *c) {
 
 ​                            **假设cache[]中有8个元素，因此i的值为4。规约运算的其中一个步骤如下图所示**
 
-![加法](https://img-blog.csdn.net/20170716095149539?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRmlzaFNlZWtlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![加法](pic/3.png)
 
 5. **由于线程块之间无法通信**。只能将每个线程块算出来的值存出来,存到数组c中，最后会返回block数量个c，然后由cpu执行最后的加法。
 
@@ -629,7 +628,7 @@ int main( void ) {
 * 与常量内存类似的是，**纹理内存同样缓存在芯片上（利用了芯片上的缓存加速）！！！**，因此在某些情况中，它能够减少对内存的请求并提供更高效的内存带宽。
 * **纹理缓存**是专门为那些**在内存访问模式中存在大量空间局部性（Spatial Locality）**的图形应用程序而设计的。在某个计算应用程序中，这意味着一个线程**读取的位置**可能与**邻近**的线程的**读取位置**非常接近
 
-![img](https://images2015.cnblogs.com/blog/986608/201702/986608-20170223153922116-466652140.png)
+![img](pic\4.png)
 
 上图中，从数学角度来看，图中的四个地址并非连续的，在一般的CPU缓存模式中，这些地址将不会缓存。但由于GPU纹理内存是专门为了加速这种访问模式而设计的，因此如果在这种情况中使用纹理内存而不是全局内存，那么将获得性能提升。
 
@@ -641,12 +640,12 @@ int main( void ) {
 2. 在随时间递进的每个步骤中，我们假设热量在某个单元机器邻接单元之间”流动“/如果某个单元的温度比邻接单元的温度更高，那么热量将从邻接单元传导到该单元。
 3. 我们对新单元中心温度的计算方法为，将单元与邻接单元的温差相加起来，加上原有温度：
 
-![1557992811022](C:\Users\xiaoxiong\AppData\Roaming\Typora\typora-user-images\1557992811022.png)
+![1557992811022](pic\5.png)
 
 4. 常量k表示模拟过程中热量的流动速率。k值越大，表示系统会更快地达到稳定温度，而k值越小，则温度梯度将存在更长时间。
 5. 只考虑上下左右四个邻域的话讲上述式子展开有
 
-![1557993195547](C:\Users\xiaoxiong\AppData\Roaming\Typora\typora-user-images\1557993195547.png)
+![1557993195547](pic\6.png)
 
 
 
@@ -1117,7 +1116,7 @@ int main(int argc, char* argv[])
 * 当设置的计算能力比硬件本身高比如计算能力是6.1的（1080TI），设置 compute=62，sm=62 会出现错误，kernel不会被执行。
 * 在.cu文件设置自己硬件的计算能力，如果不去设置或者去设置比较低的计算能力，比如设置compute_30,sm_30，那么自然地编译出来的程序的性能就会打折扣。
 
-![1558098293977](C:\Users\xiaoxiong\AppData\Roaming\Typora\typora-user-images\1558098293977.png)
+![1558098293977](pic\7.png)
 
 ## 2.原子操作
 
@@ -1251,7 +1250,7 @@ __global__ void histo_kernel( unsigned char *buffer,
 
 
 
-![1558171366351](C:\Users\xiaoxiong\AppData\Roaming\Typora\typora-user-images\1558171366351.png)
+![1558171366351](pic\8.png)
 
 3. 固定内存是一把双刃剑。**但是用固定内存时，你将失去虚拟内存的所有功能。**应用程序中使用每个固定内存时都需要**分配物理内存**，因为这些内存不能交换到磁盘上。--->意味着系统更快地耗尽内存。
 
@@ -1438,7 +1437,7 @@ int main( void ) {
 
 ## 使用多个流
 
-![cuda流](https://img-blog.csdn.net/20170716103917013?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRmlzaFNlZWtlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![cuda流](pic\9.png)
 
 改进思想：
 
@@ -1614,15 +1613,15 @@ int main( void ) {
 * 程序员可以将流视为有序的操作序列，其中既包含内存复制操作，又包含核函数调用。
 * 然而，硬件中并没有流的概念，而是**包含一个或多个引擎来执行内存复制操作**，以及**一个引擎来执行核函数**。这些引擎彼此独立地对操作进行排队。
 
-![技术分享](http://image.bubuko.com/info/201704/20180110230842521801.png)
+![技术分享](pic\10.png)
 
 应用程序首先将第0个流的所有操作放入队列，然后是第一个流的所有操作。CUDA驱动程序负责按照这些操作的顺序把他们调度到硬件上执行，这就维持了流内部的依赖性。图10.3说明了这些依赖性，**箭头表示复制操作要等核函数执行完成之后才能开始**。
 
-![技术分享](http://image.bubuko.com/info/201704/20180110230842524731.png)
+![技术分享](pic\11.png)
 
 于是得到这些操作在硬件上执行的时间线：
 
-![ææ¯åäº"](http://image.bubuko.com/info/201704/20180110230842525708.png)
+![ææ¯åäº"](pic\12.png)
 
 
 
@@ -1673,7 +1672,7 @@ int main( void ) {
 
 如果内存复制操作的时间与核函数执行的时间大致相当，那么新的执行时间线将如图10.5所示，在新的调度顺序中，依赖性仍然能得到满足：
 
-![技术分享](http://image.bubuko.com/info/201704/20180110230842528637.png)
+![技术分享](pic\13.png)
 
 由于采用了宽度优先方式将操作放入各个流的队列中，因此第0个流对c的复制操作将不会阻塞第1个流对a和b的内存复制操作。这使得GPU能够并行的执行复制操作和核函数，从而使应用程序的运行速度显著加快。
 
@@ -1788,7 +1787,7 @@ NVIDIA一个显卡可能包含多个GPU。例如GeForce GTX 295、Tesla K10。�
 2. CUBLAS：线性代数函数
 3. 实例程序：NVIDIA GPU Computing SDK
 
-![1558370188960](C:\Users\xiaoxiong\AppData\Roaming\Typora\typora-user-images\1558370188960.png)
+![1558370188960](pic\14.png)
 
 4. NVIDIA性能原语（NPP）：高性能图像处理或视频应用程序
 5. 调试工具NVIDIA Parallel Nsight
