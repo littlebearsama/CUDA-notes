@@ -419,7 +419,7 @@ __global__ void dot(float *a, float *b, float *c) {
 
 ​                            **假设cache[]中有8个元素，因此i的值为4。规约运算的其中一个步骤如下图所示**
 
-![加法](F:/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%A4%87%E4%BB%BD/CUDA/CUDA/%5B%E4%B9%A6%5DCUDA_by-example/pic/3.png)
+![加法](pic/3.png)
 
 5. **由于线程块之间无法通信**。只能将每个线程块算出来的值存出来,存到数组c中，最后会返回block数量个c，然后由cpu执行最后的加法。
 
