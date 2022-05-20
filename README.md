@@ -1,5 +1,5 @@
 # CUDA-notes
-[个人cuda笔记博客链接](https://littlebearsama.github.io/categories/%E7%BC%96%E7%A8%8B/CUDA/)
+[个人cuda笔记博客链接](https://littlebearsama.github.io/tags/CUDA/)
 
 高性能编程 笔记
 ## 书籍
